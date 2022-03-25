@@ -4,6 +4,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
+
 module.exports = (env, argv) => {
     return ({
         stats: 'minimal', // Keep console output easy to read.
@@ -56,7 +57,14 @@ module.exports = (env, argv) => {
                     test: /\.ts(x)?$/,
                     loader: 'ts-loader',
                     exclude: /node_modules/
-                }
+                },
+                {
+                    test: /\.css$/,
+                    use: [
+                      'style-loader',
+                      'css-loader'
+                    ]
+                  }
             ]
         },
         resolve: {
@@ -81,4 +89,5 @@ module.exports = (env, argv) => {
             })
         ]
     });
+    
 }
